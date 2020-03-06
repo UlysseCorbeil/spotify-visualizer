@@ -6,22 +6,44 @@ import Button from '../styles/buttons';
 
 const { colors, display } = theme;
 
-const Container = styled.div`
+const Container = styled.section`
   width: 100%;
   ${display.flexCenter}
-  flex-flow: column-wrap;
+  flex-flow: column wrap;
+`;
+
+const LoginTitle = styled.h1`
+  color: ${colors.white}
 `;
 
 
 class LoginScreen extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+
+  onMouseClick (e) {
+    e.preventDefault();
+    this.setState({
+      isLoggedIn: true
+    })
+  }
+
   render() {
     return(
       <Container>
 
-        <h1>Please log in your account</h1>
+        <LoginTitle>Please log in your account</LoginTitle>
 
-        <Button> Login </Button>
+        <Button
+          onClick={this.onMouseClick.bind(this)}
+        > Login </Button>
+
+        {this.props.children}
 
       </Container>
     );

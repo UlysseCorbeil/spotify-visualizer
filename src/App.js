@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
 import LoginScreen from './components/LoginScreen';
+import Profile from './components/Profile';
 
 import styled from 'styled-components';
 import theme from './styles/theme'
 const { colors, display } = theme;
 
 const AppContainer = styled.div`
+  font-family: Helvetica Neue;
   height: 100%;
   ${display.flexCenter}
   width: 100%;
@@ -18,12 +20,13 @@ class App extends Component {
 
   render() {
 
+    const { isLoggedIn } = this.props;
+
     return (
       
       <AppContainer>
 
-        <LoginScreen />
-
+        { isLoggedIn ? <Profile /> : <LoginScreen /> }
       </AppContainer>
 
     );
