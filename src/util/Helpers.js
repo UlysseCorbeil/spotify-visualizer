@@ -4,7 +4,7 @@
  * params void
  * return hashVal
  */
-export const getHashFromURL () {
+export const getHashFromURL ()  {
   const hashVal = {};
   let key;
   let regex = /([^&;=]+)=?([^&;]*)/g;
