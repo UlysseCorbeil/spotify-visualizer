@@ -37,7 +37,7 @@ class LoginScreen extends Component {
     return(
       <Container>
 
-        <LoginTitle>Please log in your account</LoginTitle>
+        <LoginTitle> Please log in your account </LoginTitle>
 
         <Button
           onClick={this.onMouseClick.bind(this)}
