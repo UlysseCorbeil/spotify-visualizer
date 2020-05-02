@@ -1,5 +1,11 @@
 
+// Guidelines
+// https://developer.spotify.com/documentation/general/guides/authorization-guide/
+// https://github.com/spotify/web-api-auth-examples
+
 require('dotenv').config();
+
+const Helpers =  require('../src/util/Helpers');
 
 const http = require('http');
 
@@ -20,6 +26,7 @@ let app = http.createServer((req, res) => {
 
 // Start the server on port
 app.listen(PORT);
+console.log(Helpers.generatureRandomString(16));
 console.log('Node server running on port ' + PORT);
 console.log(CLIENT_ID);
 console.log(PORT);
