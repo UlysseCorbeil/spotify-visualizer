@@ -6,6 +6,8 @@ import Profile from './components/Profile';
 import styled, { createGlobalStyle } from 'styled-components';
 import { cssReset } from './styles/reset'
 
+import AccessToken from './spotify/AccessToken';
+
 import theme from './styles/theme';
 const { colors, display } = theme;
 
@@ -31,6 +33,12 @@ class App extends Component {
     }
   }
 
+  componentDidMount () {
+    this.setState({
+      accessToken: AccessToken.getAccessToken()
+    });
+  }
+
   render() {
 
     const { accessToken } = this.state;
@@ -41,7 +49,7 @@ class App extends Component {
 
         <GlobalStyle />
 
-        { accessToken ? <Profile /> : <LoginScreen /> }
+        { accessToken ? <Profile /> : <LoginScreen /> } 
       </AppContainer>
 
     );

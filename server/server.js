@@ -4,7 +4,7 @@
 
 require('dotenv').config({path: "../.env"});
 
-const Helpers =  require('../src/util/Helpers');
+const Helpers =  require('../src/util/Helpers').default;
 
 const PORT = process.env.PORT || 3001;
 const CLIENT_ID = process.env.CLIENT_ID;

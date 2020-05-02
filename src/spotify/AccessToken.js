@@ -87,4 +87,4 @@ class AccessToken {
 
 }
 
-module.exports = AccessToken;
+export default AccessToken;
