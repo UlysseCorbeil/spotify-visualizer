@@ -6,7 +6,7 @@ import Button from '../styles/buttons';
 
 const { colors, display } = theme;
 
-const LOGIN_URI = 'https://localhost:3001/login';
+const LOGIN_URI = 'http://localhost:3001/login';
 
 const Container = styled.section`
   width: 100%;
@@ -20,20 +20,6 @@ const LoginTitle = styled.h1`
 
 
 class LoginScreen extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoggedIn: false
-    }
-  }
-
-  onMouseClick (e) {
-    e.preventDefault();
-    this.setState({
-      isLoggedIn: true
-    })
-  }
 
   render() {
     return(

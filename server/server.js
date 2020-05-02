@@ -103,7 +103,88 @@ if (cluster.isMaster) {
             state: state,
           })}`,
         );
+    });
+
+    // acces and refresh access token from spotify api, using client URI
+    app.get('/callback', function (req, res) {
+    
+        const code = req.query.code || null;
+        const state = req.query.state || null;
+        const storedState = req.cookies ? req.cookies[stateKey] : null;
+    
+        if (state === null || state !== storedState) {
+
+            res.redirect('/#' +
+            querystring.stringify({
+              error: 'state_mismatch'
+            }));
+
+        } else {
+
+          res.clearCookie(stateKey);
+
+          const authOptions = {
+            url: 'https://accounts.spotify.com/api/token',
+            form: {
+              code: code,
+              redirect_uri: REDIRECT_URI,
+              grant_type: 'authorization_code',
+            },
+            headers: {
+              'Authorization': 'Basic' +  (new Buffer(CLIENT_ID + ':' + {CLIENT_SECRET}).toString('base64'))
+            },
+            json: true,
+          };
+    
+          request.post(authOptions, function (err, res, body) {
+            if (!err && res.statusCode === 200) {
+              const access_token = body.access_token;
+              const refresh_token = body.refresh_token;
+    
+              // pass token to url to make req directly
+              res.redirect('/#' +
+                querystring.stringify({
+                    access_token: access_token,
+                    refresh_token: refresh_token
+                })
+              );
+            } else {
+                res.redirect('/#' +
+                    querystring.stringify({
+                    error: 'invalid_token'
+                }));
+            }
+          });
+        }
+    });
+
+
+    // refresh token
+    app.get('/refresh_token', function (req, res) {
+
+        const refresh_token = req.query.refresh_token;
+        const authOptions = {
+          url: 'https://accounts.spotify.com/api/token',
+          headers: {
+            'Authorization': 'Basic' +  (new Buffer(CLIENT_ID + ':' + {CLIENT_SECRET}).toString('base64'))
+          },
+          form: {
+            grant_type: 'refresh_token',
+            refresh_token: refresh_token,
+          },
+          json: true,
+        };
+    
+        request.post(authOptions, function (error, res, body) {
+          if (!error && res.statusCode === 200) {
+            const access_token = body.access_token;
+            res.send({ 
+                'access_token': access_token
+             });
+          }
+        });
       });
+    
       
       // All remaining requests return the React app, so it can handle routing.
     app.get('*', function (req, res) {
