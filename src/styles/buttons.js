@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import theme from './theme';
 const { colors, display } = theme;
 
-const Button = styled.button`
+const Button = styled.a`
   cursor: pointer;
   background-color: ${colors.green};
   color: white;
   margin-top: 2rem;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  text-decoration: none;
   letter-spacing: 2px;
   font-size: 80%;
   padding-left: 2.5rem;

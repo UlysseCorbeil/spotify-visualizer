@@ -24,9 +24,16 @@ const AppContainer = styled.div`
 
 class App extends Component {
 
+  constructor () {
+    super();
+    this.state = {
+      accessToken: ''
+    }
+  }
+
   render() {
 
-    const { isLoggedIn } = this.props;
+    const { accessToken } = this.state;
 
     return (
       
@@ -34,7 +41,7 @@ class App extends Component {
 
         <GlobalStyle />
 
-        { isLoggedIn ? <Profile /> : <LoginScreen /> }
+        { accessToken ? <Profile /> : <LoginScreen /> }
       </AppContainer>
 
     );

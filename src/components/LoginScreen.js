@@ -6,6 +6,8 @@ import Button from '../styles/buttons';
 
 const { colors, display } = theme;
 
+const LOGIN_URI = 'https://localhost:3001/login';
+
 const Container = styled.section`
   width: 100%;
   ${display.flexCenter}
@@ -40,7 +42,7 @@ class LoginScreen extends Component {
         <LoginTitle> Please log in your account </LoginTitle>
 
         <Button
-          onClick={this.onMouseClick.bind(this)}
+          href={LOGIN_URI}
         > Login </Button>
 
         {this.props.children}

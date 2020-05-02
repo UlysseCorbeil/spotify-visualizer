@@ -35,7 +35,7 @@ class Helpers {
     return string;
   };
 
-  static generatureRandomString (totalLength) {
+  static generateRandomString (totalLength) {
     let string = '';
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charsLength = chars.length;
