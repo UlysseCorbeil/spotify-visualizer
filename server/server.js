@@ -1,9 +1,8 @@
 
 // Guidelines
 // https://developer.spotify.com/documentation/general/guides/authorization-guide/
-// https://github.com/spotify/web-api-auth-examples
 
-let dotenv = require('dotenv').config({path: "../.env"});
+require('dotenv').config({path: "../.env"});
 
 const Helpers =  require('../src/util/Helpers');
 
@@ -142,7 +141,7 @@ if (cluster.isMaster) {
               const refresh_token = body.refresh_token;
     
               // pass token to url to make req directly
-              res.redirect('/#' +
+              res.redirect(FRONTEND_URI + '/#' +
                 querystring.stringify({
                     access_token: access_token,
                     refresh_token: refresh_token

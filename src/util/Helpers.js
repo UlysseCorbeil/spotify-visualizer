@@ -46,6 +46,24 @@ class Helpers {
     return string;
   }
 
+  static getHashFromUrl () {
+
+    const hashParams = {};
+
+    // Match multiple group tokens and extract substr &, ; and = and check the match
+    const reg = /([^&;=]+)=?([^&;]*)/g;
+
+    // url query string
+    const qs = window.location.hash.substring(1);
+
+    let e;
+    
+    while ((e = reg.exec(qs))) {
+      hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+    return hashParams;
+  }
+
 }
 
 module.exports = Helpers;

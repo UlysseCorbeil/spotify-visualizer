@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from './theme';
-const { colors, display } = theme;
+const { colors } = theme;
 
 const Button = styled.a`
   cursor: pointer;
@@ -10,12 +10,13 @@ const Button = styled.a`
   margin-bottom: 2rem;
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 2px;
-  font-size: 80%;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  letter-spacing: 3px;
+  font-size: 90%;
+  font-weight: bolder;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
   border-radius: 1.5em;
   border: 0;
   transition: all 150ms ease-out;
@@ -25,7 +26,7 @@ const Button = styled.a`
     outline: 0;
   }
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 `;
 
